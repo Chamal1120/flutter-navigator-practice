@@ -1,8 +1,28 @@
+import 'package:catppuccin_flutter/catppuccin_flutter.dart';
 import 'package:flutter/material.dart';
 
+Flavor flavor = catppuccin.mocha;
+
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
+    darkTheme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: flavor.base,
+        ),
+        scaffoldBackgroundColor: flavor.crust,
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(
+            color: flavor.text,
+          ),
+          bodyMedium: TextStyle(
+            color: flavor.text,
+          ),
+          bodySmall: TextStyle(
+            color: flavor.text,
+          ),
+        )),
+    themeMode: ThemeMode.dark,
     title: 'Navigation Basics',
     home: FirstRoute(),
   ));
@@ -16,7 +36,12 @@ class FirstRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('First Route'),
+        title: Text(
+          'First Route',
+          style: TextStyle(
+            color: flavor.text,
+          ),
+        ),
       ),
       body: Center(
         child: Column(
@@ -24,6 +49,9 @@ class FirstRoute extends StatelessWidget {
           children: [
             Text('Simple implementation of Navigator widget'),
             ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(flavor.surface0),
+                  foregroundColor: WidgetStatePropertyAll(flavor.text)),
               child: const Text('Open route'),
               onPressed: () {
                 debugPrint('Switching to SecondRoute');
@@ -33,7 +61,8 @@ class FirstRoute extends StatelessWidget {
                 );
               },
             ),
-            Text('22ug1-0093',
+            Text(
+              '22ug1-0093',
               style: TextStyle(
                 fontSize: 9.0,
                 fontStyle: FontStyle.italic,
@@ -54,10 +83,18 @@ class SecondRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Second Route'),
+        title: Text(
+          'Second Route',
+          style: TextStyle(
+            color: flavor.text,
+          ),
+        ),
       ),
       body: Center(
         child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(flavor.surface0),
+              foregroundColor: WidgetStatePropertyAll(flavor.text)),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -67,4 +104,3 @@ class SecondRoute extends StatelessWidget {
     );
   }
 }
-
